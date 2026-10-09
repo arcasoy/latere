@@ -1,0 +1,130 @@
+# Seed hooks — the raw creative. Each is a candidate first line / opening beat.
+# `type` is an interpretable latent axis; keep the vocabulary tight.
+# Drop new hooks here (or have another agent fill it); the ledger records which
+# hook_id produced which post so reward flows back to the exact line.
+#
+# Register is "at the door" (see content/guidance.yaml and ../docs/nonyxa/COPY.md):
+# name the pain of the habit and the identity the viewer wants, cool and direct.
+# The audience is nail biters and skin pickers, never a manicure audience.
+# No em dashes. No salon vocabulary. The app never scores or detects anything.
+
+hooks:
+  # --- pov: a first-person moment the viewer recognizes ---
+  - id: h_pov_midbite
+    type: pov
+    text: "POV: you catch yourself mid-bite for the first time in years, and you actually stop"
+  - id: h_pov_nothidden
+    type: pov
+    text: "POV: day 21, and you realize you haven't hidden your hands once this week"
+  - id: h_pov_pen
+    type: pov
+    text: "POV: someone hands you a pen and you don't fold your fingers under"
+  - id: h_pov_autopilot
+    type: pov
+    text: "POV: you're three nails deep before you even notice you started"
+  - id: h_pov_twoweeks
+    type: pov
+    text: "POV: two weeks of photos, and the growth is right there on your own hands"
+  - id: h_pov_whiteedge
+    type: pov
+    text: "POV: it's day 9 and your thumb has a real white edge again"
+  - id: h_pov_camerainstead
+    type: pov
+    text: "POV: you go to bite, open the camera instead, and the urge just passes"
+  - id: h_pov_resetanyway
+    type: pov
+    text: "POV: your clean streak resets on day 12 and you check in anyway"
+  - id: h_pov_2amsearch
+    type: pov
+    text: "POV: you found the word BFRB at 2am years ago and never told anyone"
+
+  # --- bold-claim: the argument, stated flat ---
+  - id: h_claim_cantlie
+    type: bold-claim
+    text: "You can't lie to a photo of your own hands"
+  - id: h_claim_millimeter
+    type: bold-claim
+    text: "Nails grow about a millimeter a week. That's why every attempt before this one failed"
+  - id: h_claim_tendays
+    type: bold-claim
+    text: "Ten days in, your hands look exactly the same. That's the whole reason you quit quitting"
+  - id: h_claim_11pm
+    type: bold-claim
+    text: "Every other tracker lets you tap 'clean day' at 11pm and move on"
+  - id: h_claim_willpower
+    type: bold-claim
+    text: "You don't need more willpower. You need to be able to see it working"
+  - id: h_claim_onehonestminute
+    type: bold-claim
+    text: "The habit runs on autopilot. One honest minute a day drags it out"
+  - id: h_claim_nogloves
+    type: bold-claim
+    text: "No bitter polish. No gloves. Just a photo you can't argue with"
+  - id: h_claim_brainwrong
+    type: bold-claim
+    text: "Your brain calls it pointless on day ten. A photo proves it wrong"
+  - id: h_claim_sixweeks
+    type: bold-claim
+    text: "The version of you who doesn't bite is about six weeks of photos away"
+  - id: h_claim_baseline
+    type: bold-claim
+    text: "Tonight's photo is your baseline. Two weeks from now it's your before-and-after"
+
+  # --- question: the one they've asked themselves ---
+  - id: h_q_mondays
+    type: question
+    text: "How many Mondays have you started over on?"
+  - id: h_q_handsupclose
+    type: question
+    text: "When did you last let someone look at your hands up close?"
+  - id: h_q_friday
+    type: question
+    text: "Why does it always fall apart by Friday?"
+  - id: h_q_whichfinger
+    type: question
+    text: "Do you know which fingertip you go for first?"
+  - id: h_q_seeaweek
+    type: question
+    text: "What would change if you could actually see a week of progress?"
+  - id: h_q_stressorbored
+    type: question
+    text: "Are you biting because you're stressed, or because you're bored?"
+
+  # --- listicle: promises a count, and the post must deliver exactly that many ---
+  - id: h_list_firstweek
+    type: listicle
+    text: "3 reasons quitting never sticks past the first week"
+  - id: h_list_stopguessing
+    type: listicle
+    text: "4 things that change once you stop guessing and start photographing"
+  - id: h_list_nobodywarns
+    type: listicle
+    text: "3 things nobody warns you about the first two weeks"
+  - id: h_list_hidehands
+    type: listicle
+    text: "5 places you hide your hands without thinking about it"
+  - id: h_list_streakvsresolution
+    type: listicle
+    text: "4 things a clean streak does that a resolution can't"
+  - id: h_list_skinpicking
+    type: listicle
+    text: "3 things that change when you start tracking the picking too"
+
+  - id: h_msqe7yyt0vsqg4
+    type: bold-claim
+    text: "Three nails deep before you even noticed. That's not weakness. That's what autopilot looks like."
+  - id: h_msqe7yythyebjn
+    type: pov
+    text: "POV: you're mid-check-in and you realize today is actually better than last Tuesday"
+  - id: h_msqe7yytewv05s
+    type: question
+    text: "What does it feel like to fold your fingers into your palm when someone reaches for your hand?"
+  - id: h_msqe7yyt5l3pzx
+    type: bold-claim
+    text: "A millimeter a week sounds like nothing. Six weeks of photos looks like everything."
+  - id: h_msqe7yytm9v4o9
+    type: listicle
+    text: "3 lies your brain tells you on day nine of a clean streak"
+  - id: h_msqe7yyt2o0bvf
+    type: question
+    text: "Have you ever been three weeks clean and then lost it in one bad afternoon?"

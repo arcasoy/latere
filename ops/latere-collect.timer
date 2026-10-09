@@ -1,0 +1,14 @@
+[Unit]
+Description=Collect post reward on a cadence
+
+[Timer]
+# Reward is only meaningful once a post has had time to be seen, so this is
+# deliberately slow. The console's own scheduler collects after each iteration;
+# this is what keeps the ledger current while the switch is off.
+OnBootSec=15min
+OnUnitActiveSec=6h
+AccuracySec=5min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

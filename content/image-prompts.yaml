@@ -1,0 +1,94 @@
+# Prompt bank for AI-generated slideshow backgrounds. The loop tops up the
+# still-image pool from these when it runs low (core/imagegen.ts). Every image
+# is ingested as a normal shot tagged [ai-gen, background, ...tags] — so reward
+# flows back to the prompt through the tags it carries.
+#
+# Each prompt OWNS its aesthetic — don't homogenize. The only global rules
+# (appended automatically): vertical 9:16, photorealistic, NO text in frame.
+# Brand: honest, warm, with teeth. Real skin, real texture, bold light.
+# NOT beige-linen stock lifestyle, NOT clinical, NOT corporate.
+
+prompts:
+  - id: flash_citrus_night
+    tags: [nails, lifestyle]
+    prompt: >-
+      Direct on-camera flash photo at night: a woman's hand with bare natural
+      nails squeezing a lime wedge over a cocktail glass, harsh flash, deep
+      black shadows, glossy highlights, candid paparazzi energy, film grain.
+
+  - id: macro_raking_light
+    tags: [nails, closeup]
+    prompt: >-
+      Extreme macro of a natural fingernail lit by hard raking side-light that
+      reveals every ridge and line in the nail plate, dramatic chiaroscuro,
+      pitch-black background, honest unretouched skin texture.
+
+  - id: cherry_colorblock
+    tags: [nails]
+    prompt: >-
+      A hand with short natural nails pressed flat against a saturated
+      cherry-red seamless studio backdrop, one hard shadow, bold graphic
+      fashion-editorial composition, high contrast.
+
+  - id: dark_water_break
+    tags: [nails, lifestyle]
+    prompt: >-
+      A hand breaking up through a dark water surface, droplets frozen
+      mid-splash, natural nails catching a single hard beam of light, moody
+      cinematic, deep teal-black palette.
+
+  - id: night_cab_window
+    tags: [nails, lifestyle]
+    prompt: >-
+      A hand resting against a taxi window at night, neon city bokeh streaking
+      past, natural nails lit by passing signs, rain-blurred glass, cinematic
+      film still, anamorphic feel.
+
+  - id: honest_gel_peel
+    tags: [nails, closeup]
+    prompt: >-
+      Unflinching macro of a gel manicure lifting and peeling off a natural
+      nail underneath, raw honest documentary texture, warm tungsten light,
+      shallow focus — beautiful and slightly uncomfortable.
+
+  - id: tile_flash_y2k
+    tags: [nails, lifestyle, pov]
+    prompt: >-
+      Point-and-shoot flash photo of a hand with bare natural nails splayed
+      against glossy white bathroom tile, harsh direct flash, slight
+      overexposure, y2k digicam aesthetic, hard shadows.
+
+  - id: emerald_silk_dig
+    tags: [nails, closeup]
+    prompt: >-
+      Natural nails pressing gently into deep emerald silk, dramatic sculpted
+      folds, one hard spotlight from the side, dark luxurious editorial mood,
+      rich color depth.
+
+  - id: frosted_glass_touch
+    tags: [nails, lifestyle]
+    prompt: >-
+      Fingertips pressed against heavily frosted glass photographed from the
+      other side, condensation trails running down, cold blue rim light,
+      mysterious cinematic mood.
+
+  - id: golden_backlight_macro
+    tags: [nails, closeup]
+    prompt: >-
+      Macro of natural nails backlit by low golden-hour sun, glowing skin
+      edges, real lens flare, warm cinematic haze but tack-sharp nail detail,
+      dust motes in the light.
+
+  - id: blood_orange_slam
+    tags: [nails, overhead]
+    prompt: >-
+      Overhead flash shot of a hand with natural nails pressing into halved
+      blood oranges on brushed stainless steel, juice droplets frozen mid-air,
+      bold graphic food-editorial, saturated red-orange against cold metal.
+
+  - id: red_club_beam
+    tags: [nails, lifestyle]
+    prompt: >-
+      A hand with natural nails reaching up into a beam of red club light,
+      smoke haze curling through the beam, everything else pitch black, grainy
+      35mm concert-photo energy.

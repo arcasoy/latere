@@ -1,0 +1,26 @@
+# Seed hooks — the raw creative you (or another agent) drop in.
+#
+# Each hook is a candidate first line / opening beat. Latere assembles them into
+# variants; the ledger records which hook_id produced which post, so reward flows
+# back to the exact hook.
+#
+# Keep `type` tags consistent — they become an interpretable axis in the latent
+# space (compress early). Copy this file to hooks.yaml and fill it for real.
+
+hooks:
+  - id: h_pov_reveal
+    type: pov
+    text: "POV: you finally see what's actually going on under the gel"
+    notes: "pairs with the before/reveal format"
+
+  - id: h_claim_aging
+    type: bold-claim
+    text: "Your nail shape is aging your hands by 10 years"
+
+  - id: h_question_scroll
+    type: question
+    text: "What if your 2am phone scroll became the thing that fixed your nails?"
+
+  - id: h_listicle_habits
+    type: listicle
+    text: "3 nail habits quietly wrecking your natural nail"

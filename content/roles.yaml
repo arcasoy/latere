@@ -1,0 +1,11 @@
+# Composition slots a format fills. `generated` roles need no footage.
+
+roles:
+  - { id: background, label: Background, description: "Full-frame footage behind the caption." }
+  - { id: demo, label: Demo, description: "App / product footage shown to the viewer." }
+  - { id: presenter, label: Presenter, description: "A person / talking head." }
+  - { id: foreground, label: Foreground, description: "Keyed or picture-in-picture layer over a background (greenscreen)." }
+  - { id: reveal_before, label: "Reveal — before", description: "The 'before' half of a before/after." }
+  - { id: reveal_after, label: "Reveal — after", description: "The 'after' half of a before/after." }
+  - { id: hook_card, label: Hook card, generated: true, description: "Generated text-hook overlay (no footage)." }
+  - { id: music, label: Music, generated: true, description: "Audio bed (from music/)." }

@@ -1,0 +1,6 @@
+# Install to /etc/sudoers.d/latere with `visudo -c -f` first, mode 0440.
+#
+# The deploy timer runs as `latere` and needs exactly one privileged action: bounce
+# the service after a rebuild. Granting the whole of systemctl would let a
+# compromised deploy disable the units meant to notice it.
+latere ALL=(root) NOPASSWD: /bin/systemctl restart latere.service

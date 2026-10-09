@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Not the dashboard. latere.space is served by the box behind a Cloudflare
+  // tunnel; this Worker has one job, on a schedule, and answers no requests.
+  //
+  // Deliberately no route, no custom domain, no assets, and workers_dev off. A
+  // Worker that answers on a hostname is a Worker that can serve an internal
+  // console without the Access check the tunnel hostname carries.
+  "name": "nonyxa-asc-feed",
+  "compatibility_date": "2025-01-01",
+  "main": "worker/index.ts",
+  "workers_dev": false,
+  "observability": {
+    "enabled": true
+  },
+  // One read a day of Apple's ONGOING analytics feed, which it stops
+  // generating if nothing reads it. See worker/index.ts.
+  "triggers": {
+    "crons": ["17 8 * * *"]
+  },
+  "vars": {
+    // Identifiers, not credentials: the App Store id is in every store URL and
+    // the PostHog project id is in every dashboard link. The keys that make
+    // them useful are secrets — see README, "Credentials".
+    "ASC_APP_ID": "6778487881",
+    "POSTHOG_HOST": "https://us.posthog.com",
+    "POSTHOG_PROJECT_ID": "461687"
+  }
+}

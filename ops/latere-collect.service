@@ -1,0 +1,13 @@
+[Unit]
+Description=Pull matured per-post reward from Buffer into the ledger
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=latere
+WorkingDirectory=/srv/latere
+EnvironmentFile=/etc/latere/latere.env
+Environment=GTM_DATA_DIR=/srv/latere-data
+Environment=PATH=/home/latere/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/latere/.local/bin/mise exec -- npm run cli -- collect

@@ -1,0 +1,25 @@
+[tools]
+node = "24"
+supabase = "latest"
+
+[tasks.setup]
+run = "npm ci"
+
+[tasks.check]
+run = "npm run check"
+
+[tasks.dev]
+run = """
+npm run dev:server &
+trap 'kill $! 2>/dev/null' EXIT
+npm run dev
+"""
+
+[tasks.build]
+run = "npm run build"
+
+[tasks.serve]
+run = "npm run build && npm start"
+
+[tasks.cli]
+run = "npm run cli --"

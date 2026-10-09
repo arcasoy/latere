@@ -1,0 +1,105 @@
+# The generator's memory — product truths every LLM call (hooks, slide copy)
+# must respect. Hand-written; edit freely, comments are preserved.
+#
+# Supabase stores rejection reasons from the cockpit in the lessons table.
+# Promote useful lessons into these versioned facts.
+#
+# Source of truth for voice and audience: ../docs/nonyxa/PRODUCT.md and
+# ../docs/nonyxa/COPY.md. These facts are the compressed version that rides
+# in every prompt. If the brand docs change, change these in the same pass.
+
+facts:
+  # --- WHO THIS IS FOR. The single most important fact in this file. ---
+  - >-
+    THE AUDIENCE IS NAIL BITERS AND SKIN PICKERS, NOT PEOPLE WHO CARE ABOUT
+    MANICURES. These are adults with a body-focused repetitive behavior (BFRB),
+    usually anxiety-linked, who are quietly embarrassed about it and have tried
+    and failed to quit before. They are not shopping for nail art, nail health
+    tips, or a beauty routine. Never write for a manicure, salon, or
+    nail-aesthetics audience.
+  - >-
+    BANNED VOCABULARY (salon/beauty). Never use: gel, acrylic, "a fresh set",
+    nail tech, manicure, pedicure, nail polish, filing or "file your nails",
+    "natural nail", nail art, nail shape, cuticle oil, ridges, nail care
+    routine. If a line would fit a nail-salon account, it is wrong. ONE
+    EXCEPTION: naming bitter polish as a remedy that does not work ("No bitter
+    polish. No gloves.") is on-brand and encouraged, because a lot of this
+    audience has already tried it. Bitter polish as a failed fix is allowed;
+    polish as a beauty subject is not.
+
+  # --- WHAT THE APP ACTUALLY DOES ---
+  - >-
+    What the app actually does: a daily photo check-in. You photograph both
+    hands, and then YOU swipe each of the ten fingertips clean or damaged. That
+    builds two streaks, a clean streak (days since the last logged damage) and
+    a check-in streak (consecutive days checked in). It also shows any two days
+    side by side so you can see growth.
+  - >-
+    nonyxa does NOT score, grade, rate, scan, detect, diagnose, analyze, flag,
+    or "catch" anything. THE USER makes every judgment; the app only takes the
+    photo, crops the fingertips, and remembers. Never write "the app caught",
+    "the app flagged", "your nail score", "it detected", or "AI analyzes your
+    nails". This is the second most common failure after the salon drift.
+  - >-
+    Never promise medical outcomes, diagnosis, or treatment, and never use
+    clinical jargon (condition, symptom, diagnosis, treatment, relapse,
+    intervention). The word onychophagia is allowed only as recognition, the
+    way a person says it about themselves, never as a diagnosis.
+
+  # --- REGISTER: acquisition copy, so it leans on pain plus identity ---
+  - >-
+    VOICE: honest, warm, with teeth. Social is an "at the door" surface, so
+    lean into the real pain of the habit (hiding your hands, folding your
+    fingers under, starting over again on Monday, being three nails deep before
+    you notice) and the identity the viewer wants (the version of you who
+    doesn't bite). Cool and direct. Never fruity wellness softness, never "a
+    calm, gentle way to...", never a cheerleader, never a drill sergeant.
+  - >-
+    Teeth are never cruelty. Name the truth and the goal; never manufacture
+    fear, loss, or shame, and never blame the viewer. Banned: "you just haven't
+    been listening", "you have an attention problem", anything that tells the
+    viewer what is wrong with them. The habit is the antagonist, never the
+    person.
+  - >-
+    The strongest true angle, and the one to keep returning to: nails grow
+    about a millimeter a week, which is invisible day to day. That is WHY every
+    previous attempt failed. Ten days in your hands look identical, your brain
+    calls it pointless, and you're chewing again by Friday. A daily photo fixes
+    that feedback loop. And you can't cheat a photo of your own hands the way
+    you can tap "clean day" at 11pm in any other tracker.
+
+  # --- HARD COPY RULES (from docs/COPY.md) ---
+  - >-
+    NO EM DASHES in any user-facing line. Use a comma, a colon, or two
+    sentences. No hype or buzzwords (crush it, level up, supercharge, unlock
+    your potential, seamless, "journey"). At most one exclamation mark, and
+    only on a genuine win.
+  - >-
+    No casino or dark-pattern framing: no "don't lose your streak", no fake
+    urgency, no countdowns, no manufactured FOMO, no guilt. Celebrate a win
+    loud; acknowledge a slip plainly and kindly. That asymmetry is the brand.
+  - >-
+    TERMINOLOGY, always these words: a fingertip judged unharmed is "clean"
+    (never healthy, good, or fine); judged harmed is "damaged" (never bad,
+    bitten, picked, or hurt); "clean streak" for days since damage; "check-in
+    streak" for consecutive photo days; "check-in" or "today's photo" for the
+    daily ritual; "fingertip" for one cropped image (never "nail" for the
+    image). Saying "watch your nails grow back" about the real-world payoff is
+    fine and encouraged.
+  - >-
+    It works for skin picking too, and for hangnails, torn cuticles, and
+    nibbling, not only for biting. Kids can use it with a parent running the
+    check-in alongside them. The app is free to start.
+
+  # --- FORMAT DISCIPLINE ---
+  - >-
+    If a hook promises a number ("3 things", "4 signs"), the post must deliver
+    exactly that many beats. Never list five things after promising three.
+  - >-
+    Keep the sentiment consistent across a carousel. If the first slide opens
+    positive, do not spend the middle slides listing everything wrong with the
+    viewer. Pick one emotional direction and hold it to the end.
+  - >-
+    TikTok and Instagram photo posts have no tappable buttons. Never render a
+    fake button, and never write a slide that says "tap below" or points at UI
+    that does not exist. A closing call to action is plain text.

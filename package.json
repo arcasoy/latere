@@ -1,0 +1,46 @@
+{
+  "name": "latere",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "engine/core",
+    "engine/render",
+    "engine/publish",
+    "engine/collect"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "dev:server": "GTM_PORT=4323 GTM_DEV_BYPASS=1 tsx watch --env-file-if-exists=.env server/index.ts",
+    "prebuild": "bash ops/check-runtime.sh",
+    "build": "vite build",
+    "start": "tsx --env-file-if-exists=.env server/index.ts",
+    "cli": "tsx --env-file-if-exists=.env engine/cli.ts",
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.server.json",
+    "deploy:worker": "wrangler deploy",
+    "test:payback": "node --import tsx --test server/payback/*.test.ts",
+    "production": "node --import tsx engine/production/cli.ts",
+    "test:production": "node --import tsx --test engine/production/*.test.ts",
+    "test:render": "node --import tsx --test engine/render/src/*.test.ts engine/core/src/*.test.ts",
+    "lint": "biome check",
+    "deadcode": "knip",
+    "test": "npm run test:payback && npm run test:production && npm run test:render",
+    "check": "npm run lint && npm run typecheck && npm test && npm run deadcode"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsx": "^4.19.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.3",
+    "@types/node": "^22.5.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "knip": "6.26.0",
+    "typescript": "5.9.3",
+    "vite": "8.3.4",
+    "wrangler": "^4.120.1"
+  }
+}

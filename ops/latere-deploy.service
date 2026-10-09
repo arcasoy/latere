@@ -1,0 +1,11 @@
+[Unit]
+Description=Pull origin/main and rebuild the latere console
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=latere
+WorkingDirectory=/srv/latere
+Environment=PATH=/home/latere/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/srv/latere/ops/deploy.sh

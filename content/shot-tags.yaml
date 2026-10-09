@@ -1,0 +1,45 @@
+# The tag vocabulary — the ONLY way shots are organized (no folders).
+# A shot carries MANY tags; formats match shots to roles by these tags.
+# `group` is only for grouping in the cockpit UI.
+
+tags:
+  # --- subject ---
+  - { id: nails, group: subject, label: Nails }
+  - { id: face, group: subject, label: Face / presenter }
+  - { id: product, group: subject, label: Product }
+  - { id: app-screen, group: subject, label: App screen }
+  - { id: lifestyle, group: subject, label: Lifestyle }
+  - { id: text, group: subject, label: Text / graphic }
+
+  # --- image source (slideshow backgrounds — always a real image, never gradient) ---
+  - { id: stock, group: source, label: Stock photo }
+  - { id: ai-gen, group: source, label: AI-generated }
+  - { id: illustration, group: source, label: Illustration }
+  - { id: character, group: source, label: Character / mascot }
+
+  # --- framing ---
+  - { id: closeup, group: framing, label: Close-up }
+  - { id: medium, group: framing, label: Medium }
+  - { id: wide, group: framing, label: Wide }
+  - { id: pov, group: framing, label: POV }
+  - { id: overhead, group: framing, label: Overhead }
+
+  # --- motion ---
+  - { id: static, group: motion, label: Static }
+  - { id: slow, group: motion, label: Slow }
+  - { id: fast, group: motion, label: Fast }
+  - { id: loopable, group: motion, label: Loopable (satisfying) }
+
+  # --- audio ---
+  - { id: silent, group: audio, label: Silent }
+  - { id: voiceover, group: audio, label: Voiceover }
+  - { id: ambient, group: audio, label: Ambient }
+
+  # --- capability (which roles a shot can fill) ---
+  - { id: broll, group: capability, label: B-roll }
+  - { id: background, group: capability, label: Background }
+  - { id: foreground, group: capability, label: Foreground / keyed }
+  - { id: greenscreen, group: capability, label: Greenscreen }
+  - { id: reveal-before, group: capability, label: Reveal — before }
+  - { id: reveal-after, group: capability, label: Reveal — after }
+  - { id: demo-step, group: capability, label: Demo step }

@@ -1,0 +1,9 @@
+formats:
+  - id: explainer_carousel
+    label: Explainer carousel
+    kind: slideshow
+    duration_s: [0, 0]          # unused — stills, not timed
+    slides: [5, 8]              # slide-count range — a tracked permutation axis
+    segments:
+      - { role: background, match_tags_any: [stock, ai-gen, illustration, character, nails, lifestyle], required: true }
+    caption: always             # every slide carries text (hook / beats / cta)

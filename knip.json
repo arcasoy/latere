@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/knip/schema.json",
+  "workspaces": {
+    ".": {
+      "project": ["ui/**/*.{ts,tsx}", "server/**/*.ts", "engine/*.ts", "worker/**/*.ts", "*.ts"]
+    },
+    "engine/core": {
+      "project": ["src/**/*.ts"]
+    },
+    "engine/render": {
+      "project": ["src/**/*.ts"]
+    },
+    "engine/publish": {
+      "project": ["src/**/*.ts"]
+    },
+    "engine/collect": {
+      "project": ["src/**/*.ts"]
+    }
+  },
+  "tags": ["-public"]
+}

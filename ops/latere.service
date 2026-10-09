@@ -1,0 +1,36 @@
+[Unit]
+Description=latere.space — console + content engine
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=latere
+WorkingDirectory=/srv/latere
+
+# Credentials live outside the checkout, so a deploy cannot overwrite them and
+# `git status` cannot show them. Root-owned, group-readable by latere, 0640.
+EnvironmentFile=/etc/latere/latere.env
+
+# Loopback only: cloudflared is the sole thing that reaches this process, and
+# Cloudflare Access is the sole thing that reaches cloudflared.
+Environment=GTM_HOST=127.0.0.1
+Environment=GTM_PORT=5173
+# Temporary render files. Durable content lives in Latere Supabase.
+Environment=GTM_DATA_DIR=/srv/latere-data
+Environment=PATH=/home/latere/.local/bin:/usr/local/bin:/usr/bin:/bin
+
+# GTM_DEV_BYPASS must never appear here. It waives the Access check.
+
+ExecStart=/home/latere/.local/bin/mise exec -- npm start
+Restart=always
+RestartSec=5
+
+# Home holds mise and the npm cache. Rendering does not download a browser.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ReadWritePaths=/srv/latere-data
+
+[Install]
+WantedBy=multi-user.target

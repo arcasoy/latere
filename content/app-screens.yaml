@@ -1,0 +1,22 @@
+# The subject axis for app captures — which screen the shot is OF.
+# nonyxa-seeded; edit per brand. ids are stable keys.
+
+app_screens:
+  - id: streak
+    label: Streak (home)
+    description: The daily streak / home screen — the app's heartbeat.
+  - id: compare
+    label: Compare deck
+    description: The swipe deck comparing today vs yesterday.
+  - id: scan
+    label: Scan
+    description: The camera / capture screen.
+  - id: result
+    label: Result
+    description: The score / judgment screen after a scan.
+  - id: onboarding
+    label: Onboarding
+    description: The first-run onboarding flow.
+  - id: paywall
+    label: Paywall
+    description: The subscription / paywall screen.
