@@ -1,6 +1,6 @@
 # Latere project instructions
 
-Use a branch and PR for substantial changes. Run `mise run check` before pushing.
+Work directly on `main` unless the user requests a branch or PR. Run `mise run check` before pushing.
 Commit completed work. Never commit credentials or generated customer data.
 
 The deployment target for `latere.space` is one Node process on a droplet, behind a Cloudflare tunnel and Access.
