@@ -63,7 +63,7 @@ Use the existing console to review generated slides and send them to Buffer.
 `LATERE_PUBLISH_MODE=draft` creates drafts. Scheduling or immediate publishing
 requires an explicit mode change. Run `npm run cli -- collect` for performance.
 
-ASC, PostHog, and RevenueCat credentials remain server-only. The optional
+ASC and RevenueCat credentials remain server-only. The optional
 ASC operator tools live under `ops/`. Their credentials are ignored.
 Nonyxa owns the Grafana dashboard, operator tools, and BI views in
 [ops/grafana](https://github.com/arcasoy/nonyxa/tree/main/ops/grafana).

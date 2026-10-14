@@ -15,7 +15,7 @@ const SECTIONS = [
   {
     id: "acquisition",
     title: "Acquisition",
-    note: "What a post produced. PostHog sees the click and nothing after it; Apple sees the download and nothing before it. The conversion between them lives here.",
+    note: "App Store downloads and the sources Apple reports.",
   },
   {
     id: "content",

@@ -32,7 +32,6 @@ function unwired(name: string): Connector {
 export function connectors(): ConnectorsBySection {
   return {
     acquisition: [
-      fromEnv("PostHog", "POSTHOG_API_KEY", "POSTHOG_PROJECT_ID", "POSTHOG_HOST"),
       fromEnv(
         "App Store Connect",
         "ASC_KEY_ID",

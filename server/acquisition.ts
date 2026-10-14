@@ -5,48 +5,10 @@ import {
   downloadSources,
   type Referrer,
 } from "./asc";
-import { hogql } from "./posthog";
 
 export type { AttributionState, Referrer };
 
 const WINDOW_DAYS = 30;
-
-const CLICKS_BY_CAMPAIGN = `
-  SELECT
-    properties.ct AS ct,
-    properties.src AS src,
-    properties.post AS post,
-    countIf(properties.$os = 'iOS') AS clicks,
-    count() AS clicks_all,
-    uniqIf(person_id, properties.$os = 'iOS') AS people
-  FROM events
-  WHERE event = 'app_store_click'
-    AND timestamp > now() - INTERVAL ${WINDOW_DAYS} DAY
-    AND properties.ct IS NOT NULL
-  GROUP BY ct, src, post
-  ORDER BY clicks DESC
-  LIMIT 100
-`;
-
-interface ClickRow {
-  ct: string;
-  src?: string | null;
-  post?: string | null;
-  clicks?: number | string;
-  clicks_all?: number | string;
-  people?: number | string;
-}
-
-export interface AcquisitionPost {
-  ct: string;
-  src: string | null;
-  post: string | null;
-  clicks: number;
-  clicksAll: number;
-  people: number;
-  installs?: number | null;
-  conversion: number | null;
-}
 
 export type AcquisitionPanel =
   | { configured: false; missing: string[] }
@@ -57,7 +19,6 @@ export type AcquisitionPanel =
       installs: { daily: DailyDownload[]; firstTimeTotal: number; error: string | null };
       attribution: { state: AttributionState; note: string | null; feedStopped: boolean | null };
       sources: { referrers: Referrer[]; attributedFirstTime: number };
-      posts: AcquisitionPost[];
       errors: string[];
     };
 
@@ -88,12 +49,6 @@ export async function acquisition(env: Env): Promise<AcquisitionPanel> {
     vendorNumber: env.ASC_VENDOR_NUMBER as string,
     appId: env.ASC_APP_ID as string,
   };
-  const posthog = {
-    host: env.POSTHOG_HOST as string,
-    projectId: env.POSTHOG_PROJECT_ID as string,
-    apiKey: env.POSTHOG_API_KEY as string,
-  };
-
   const ascMissing = [
     !asc.keyId && "ASC_KEY_ID",
     !asc.issuerId && "ASC_ISSUER_ID",
@@ -101,41 +56,14 @@ export async function acquisition(env: Env): Promise<AcquisitionPanel> {
     !asc.vendorNumber && "ASC_VENDOR_NUMBER",
     !asc.appId && "ASC_APP_ID",
   ].filter((x): x is string => Boolean(x));
-  const posthogMissing = [
-    !posthog.apiKey && "POSTHOG_API_KEY",
-    !posthog.projectId && "POSTHOG_PROJECT_ID",
-    !posthog.host && "POSTHOG_HOST",
-  ].filter((x): x is string => Boolean(x));
-
-  if (ascMissing.length && posthogMissing.length) {
-    return { configured: false, missing: [...ascMissing, ...posthogMissing] };
+  if (ascMissing.length) {
+    return { configured: false, missing: ascMissing };
   }
 
-  const [clicks, downloads, campaigns] = await Promise.all([
-    settle("PostHog", posthogMissing, () => hogql<ClickRow>(posthog, CLICKS_BY_CAMPAIGN)),
+  const [downloads, campaigns] = await Promise.all([
     settle("Sales Reports", ascMissing, () => dailyDownloads(asc, WINDOW_DAYS)),
     settle("Analytics Reports", ascMissing, () => downloadSources(asc)),
   ]);
-
-  const byCampaign = new Map(
-    campaigns.ok ? campaigns.value.campaigns.map((c) => [c.campaign, c.downloads]) : [],
-  );
-  const attributed = campaigns.ok && campaigns.value.state === "ready";
-
-  const posts: AcquisitionPost[] = (clicks.ok ? clicks.value : []).map((row) => {
-    const found = byCampaign.get(row.ct);
-    const installs = attributed ? (found ?? null) : undefined;
-    return {
-      ct: row.ct,
-      src: row.src ?? null,
-      post: row.post ?? null,
-      clicks: Number(row.clicks ?? 0),
-      clicksAll: Number(row.clicks_all ?? 0),
-      people: Number(row.people ?? 0),
-      installs,
-      conversion: installs && row.clicks ? installs / Number(row.clicks) : null,
-    };
-  });
 
   const daily = downloads.ok ? downloads.value : [];
   const firstTimeTotal = daily.reduce((sum, d) => sum + (d.firstTime ?? 0), 0);
@@ -158,7 +86,6 @@ export async function acquisition(env: Env): Promise<AcquisitionPanel> {
       referrers: campaigns.ok ? campaigns.value.referrers : [],
       attributedFirstTime: campaigns.ok ? campaigns.value.attributedFirstTime : 0,
     },
-    posts,
-    errors: [clicks, downloads, campaigns].filter((r) => !r.ok).map((r) => r.error),
+    errors: [downloads, campaigns].filter((r) => !r.ok).map((r) => r.error),
   };
 }

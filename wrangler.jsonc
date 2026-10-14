@@ -19,11 +19,6 @@
     "crons": ["17 8 * * *"]
   },
   "vars": {
-    // Identifiers, not credentials: the App Store id is in every store URL and
-    // the PostHog project id is in every dashboard link. The keys that make
-    // them useful are secrets — see README, "Credentials".
-    "ASC_APP_ID": "6778487881",
-    "POSTHOG_HOST": "https://us.posthog.com",
-    "POSTHOG_PROJECT_ID": "461687"
+    "ASC_APP_ID": "6778487881"
   }
 }
