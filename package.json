@@ -18,13 +18,12 @@
     "cli": "tsx --env-file-if-exists=.env engine/cli.ts",
     "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.server.json",
     "deploy:worker": "wrangler deploy",
-    "test:payback": "node --import tsx --test server/payback/*.test.ts",
     "production": "node --import tsx engine/production/cli.ts",
     "test:production": "node --import tsx --test engine/production/*.test.ts",
     "test:render": "node --import tsx --test engine/render/src/*.test.ts engine/core/src/*.test.ts",
     "lint": "biome check",
     "deadcode": "knip",
-    "test": "npm run test:payback && npm run test:production && npm run test:render",
+    "test": "npm run test:production && npm run test:render",
     "check": "npm run lint && npm run typecheck && npm test && npm run deadcode"
   },
   "dependencies": {

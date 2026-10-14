@@ -1,7 +1,8 @@
 # Latere
 
 A personal go-to-market workspace for apps and websites. Create and review photo
-content, publish through Buffer, and inspect acquisition, revenue, and payback.
+content, publish through Buffer, and inspect App Store acquisition. Cohort payback
+reporting is planned.
 Nonyxa is the first supported app.
 
 React and Vite provide the console. A Node server handles integrations and native

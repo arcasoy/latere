@@ -1567,49 +1567,7 @@ tr:has(.status-review) {
   color: var(--muted);
 }
 
-.payback-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin: 18px 0;
-}
-.payback-controls label {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 12px;
-}
-.payback-controls select {
-  background: var(--panel-2);
-  color: var(--text);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  min-height: 40px;
-  padding: 8px 12px;
-  font: inherit;
-}
-.payback-table {
-  overflow-x: auto;
-}
-.payback-table th,
-.payback-table td {
-  white-space: nowrap;
-}
-.payback-details {
-  margin-top: 22px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.5;
-}
-.payback-details summary {
-  cursor: pointer;
-  color: var(--text);
-  margin-bottom: 12px;
-}
-
-.connector.paused,
-.payback-paused {
+.connector.paused {
   color: var(--muted);
 }
 .connector.paused .connector-dot {

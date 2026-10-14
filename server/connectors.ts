@@ -1,8 +1,6 @@
 import { hasLLM } from "@latere/core";
 import { hasToken, isUploadConfigured } from "@latere/publish";
 
-import { GRAFANA_PAUSED_DETAIL } from "./payback/model";
-
 export interface Connector {
   name: string;
   connected: boolean;
@@ -26,7 +24,7 @@ function fromPredicate(name: string, ok: boolean, missing: string): Connector {
 }
 
 function unwired(name: string): Connector {
-  return { name, connected: false, detail: "no route reads this yet" };
+  return { name, connected: false, paused: true, detail: "Planned integration — not connected" };
 }
 
 export function connectors(): ConnectorsBySection {
@@ -41,17 +39,7 @@ export function connectors(): ConnectorsBySection {
         "ASC_APP_ID",
       ),
     ],
-    payback: [
-      {
-        name: "Supabase via Grafana",
-        connected: false,
-        paused: true,
-        detail: GRAFANA_PAUSED_DETAIL,
-      },
-      fromEnv("RevenueCat", "REVENUECAT_API_KEY", "REVENUECAT_PROJECT_ID"),
-      unwired("TikTok / AppsFlyer"),
-      unwired("Apple financial reports"),
-    ],
+    payback: [unwired("AppsFlyer"), unwired("RevenueCat"), unwired("Ad spend")],
     content: [
       fromPredicate("Buffer", hasToken(), "BUFFER_ACCESS_TOKEN"),
       fromPredicate(
@@ -61,7 +49,5 @@ export function connectors(): ConnectorsBySection {
       ),
       fromPredicate("OpenRouter", hasLLM(), "OPENROUTER_API_KEY"),
     ],
-    retention: [unwired("Supabase")],
-    revenue: [fromEnv("RevenueCat", "REVENUECAT_API_KEY", "REVENUECAT_PROJECT_ID")],
   };
 }

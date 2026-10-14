@@ -41,3 +41,12 @@ The early-user dashboard, generator, sync tools, and BI views belong to Nonyxa
 because their queries depend on its app schema. The Payback page keeps a paused activity section with an explanation.
 Latere makes no Grafana queries. RevenueCat reports remain available. The source move
 does not change the hosted dashboard or database connection.
+
+
+## Keep reporting focused on content and acquisition
+
+Accepted. Remove the duplicate RevenueCat overview and the unused Retention tab.
+Payback remains a placeholder for future acquisition-cohort reporting across
+attribution, advertising costs, and subscription proceeds. This replaces its
+standalone RevenueCat charts and paused Grafana section. No payback provider
+requests run until the attribution and cost integrations are implemented.

@@ -6,8 +6,6 @@ import { authenticate } from "./access";
 import { acquisition } from "./acquisition";
 import { connectors } from "./connectors";
 import { captureConsole, contentRoute } from "./content";
-import { payback } from "./payback";
-import { revenue } from "./revenuecat";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const DIST = join(here, "..", "dist");
@@ -16,7 +14,6 @@ const PORT = Number(process.env.GTM_PORT ?? "5173");
 const HOST = process.env.GTM_HOST ?? "127.0.0.1";
 
 const ACQUISITION_TTL_MS = 6 * 60 * 60 * 1000;
-const REVENUE_TTL_MS = 10 * 60 * 1000;
 
 type Panel = { configured: boolean; errors?: string[] };
 
@@ -119,25 +116,6 @@ async function handle(req: IncomingMessage, res: ServerResponse): Promise<void> 
       ACQUISITION_TTL_MS,
       url.searchParams.has("refresh"),
       () => acquisition(process.env),
-    );
-    res.writeHead(status, { "content-type": "application/json" });
-    res.end(body);
-    return;
-  }
-
-  if (url.pathname === "/api/payback") {
-    const panel = await payback(process.env, url.searchParams);
-    res.writeHead(200, { "content-type": "application/json", "cache-control": "no-store" });
-    res.end(JSON.stringify(panel));
-    return;
-  }
-
-  if (url.pathname === "/api/revenue") {
-    const { status, body } = await cachedPanel(
-      "revenue",
-      REVENUE_TTL_MS,
-      url.searchParams.has("refresh"),
-      () => revenue(process.env),
     );
     res.writeHead(status, { "content-type": "application/json" });
     res.end(body);

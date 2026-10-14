@@ -63,12 +63,14 @@ Use the existing console to review generated slides and send them to Buffer.
 `LATERE_PUBLISH_MODE=draft` creates drafts. Scheduling or immediate publishing
 requires an explicit mode change. Run `npm run cli -- collect` for performance.
 
-ASC and RevenueCat credentials remain server-only. The optional
+ASC credentials remain server-only. The optional
 ASC operator tools live under `ops/`. Their credentials are ignored.
 Nonyxa owns the Grafana dashboard, operator tools, and BI views in
 [ops/grafana](https://github.com/arcasoy/nonyxa/tree/main/ops/grafana).
-The Payback page retains RevenueCat reports. Its Grafana activity section is paused
-and makes no Grafana or PostHog requests.
+The Payback page is a placeholder for acquisition-cohort reporting. It makes no
+RevenueCat, AppsFlyer, Grafana, or PostHog requests. Attribution, ad spend, and
+subscription revenue must share a defined matching scheme before reporting starts.
+Existing local RevenueCat credentials can remain for later integration.
 Latere does not generate or deploy Grafana dashboards.
 
 The cron-only `nonyxa-asc-feed` Cloudflare Worker lives under `worker/`. Its name

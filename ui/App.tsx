@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import type { Connector, ConnectorsBySection } from "../server/connectors";
-import { Connectors } from "./Connectors";
+import type { ConnectorsBySection } from "../server/connectors";
 import { Content } from "./content/Content";
 import { Acquisition } from "./panels/Acquisition";
 import { Payback } from "./panels/Payback";
-import { Revenue } from "./panels/Revenue";
 
 const SECTIONS = [
   {
     id: "payback",
     title: "Payback",
-    note: "Blended spend and proceeds, with trial conversion straight from RevenueCat.",
+    note: "Planned: measure whether each day’s acquired users earn back their advertising cost.",
   },
   {
     id: "acquisition",
@@ -21,16 +19,6 @@ const SECTIONS = [
     id: "content",
     title: "Content",
     note: "What goes out: the shot library, the hooks, what got made, and what the algorithm did with it.",
-  },
-  {
-    id: "retention",
-    title: "Retention",
-    note: "cohort curves, the day-2 and day-7 lines",
-  },
-  {
-    id: "revenue",
-    title: "Revenue",
-    note: 'RevenueCat\'s own overview, carried across unchanged. "Customers" counts identities RevenueCat has seen, not people who have paid — that is Active Subscriptions.',
   },
 ] as const;
 
@@ -55,16 +43,6 @@ function Identity() {
   }, []);
 
   return who ? <p className="who">{who}</p> : null;
-}
-
-function Placeholder({ note, connectors }: { note: string; connectors: Connector[] }) {
-  return (
-    <section className="panel">
-      <Connectors items={connectors} />
-      <p className="note">{note}</p>
-      <p className="pending">not wired yet</p>
-    </section>
-  );
 }
 
 export function App() {
@@ -109,8 +87,6 @@ export function App() {
       {section === "payback" && <Payback note={current.note} connectors={wired} />}
       {section === "acquisition" && <Acquisition note={current.note} connectors={wired} />}
       {section === "content" && <Content connectors={wired} />}
-      {section === "revenue" && <Revenue note={current.note} connectors={wired} />}
-      {section === "retention" && <Placeholder note={current.note} connectors={wired} />}
     </div>
   );
 }
