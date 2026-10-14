@@ -61,7 +61,6 @@ export function connectors(): ConnectorsBySection {
       ),
       fromPredicate("OpenRouter", hasLLM(), "OPENROUTER_API_KEY"),
     ],
-    activation: [unwired("Supabase")],
     retention: [unwired("Supabase")],
     revenue: [fromEnv("RevenueCat", "REVENUECAT_API_KEY", "REVENUECAT_PROJECT_ID")],
   };

@@ -23,11 +23,6 @@ const SECTIONS = [
     note: "What goes out: the shot library, the hooks, what got made, and what the algorithm did with it.",
   },
   {
-    id: "activation",
-    title: "Activation",
-    note: "sign-up → first capture → second day",
-  },
-  {
     id: "retention",
     title: "Retention",
     note: "cohort curves, the day-2 and day-7 lines",
@@ -115,9 +110,7 @@ export function App() {
       {section === "acquisition" && <Acquisition note={current.note} connectors={wired} />}
       {section === "content" && <Content connectors={wired} />}
       {section === "revenue" && <Revenue note={current.note} connectors={wired} />}
-      {(section === "activation" || section === "retention") && (
-        <Placeholder note={current.note} connectors={wired} />
-      )}
+      {section === "retention" && <Placeholder note={current.note} connectors={wired} />}
     </div>
   );
 }
