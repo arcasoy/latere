@@ -1,9 +1,9 @@
-import { type ChartRow, chartRows, type Grain } from "./model";
-import { readAccounts, readBehaviors, readChart } from "./sources";
+import { type ChartRow, chartRows, GRAFANA_PAUSED_DETAIL, type Grain } from "./model";
+import { readChart } from "./sources";
 
 interface Source {
   name: string;
-  status: "ready" | "missing" | "failed";
+  status: "ready" | "missing" | "failed" | "paused";
   detail: string;
 }
 export interface PaybackPanel {
@@ -29,7 +29,9 @@ export async function payback(
   const grain: Grain =
     params.get("grain") === "day" ? "day" : params.get("grain") === "month" ? "month" : "week";
   const resolution = { day: "0", week: "1", month: "2" }[grain];
-  const sources: Source[] = [];
+  const sources: Source[] = [
+    { name: "Supabase via Grafana", status: "paused", detail: GRAFANA_PAUSED_DETAIL },
+  ];
   async function source<T>(
     name: string,
     vars: string[],
@@ -50,15 +52,7 @@ export async function payback(
     }
   }
   const rc = ["REVENUECAT_API_KEY", "REVENUECAT_PROJECT_ID"];
-  const [accounts, behaviors, cohorts, proceeds] = await Promise.all([
-    source(
-      "Supabase via Grafana",
-      ["GRAFANA_URL", "GRAFANA_TOKEN", "SUPABASE_DS_UID", "EXCLUDE_EMAILS"],
-      () => readAccounts(env),
-    ),
-    source("PostHog", ["POSTHOG_HOST", "POSTHOG_API_KEY", "POSTHOG_PROJECT_ID"], () =>
-      readBehaviors(env, asOf.getTime()),
-    ),
+  const [cohorts, proceeds] = await Promise.all([
     source("RevenueCat trials", rc, async () =>
       chartRows(await readChart(env, "trial_conversion", start, end, resolution), [
         "New Customers",
@@ -76,8 +70,6 @@ export async function payback(
       return chartRows(chart, ["Proceeds"]);
     }),
   ]);
-  const within = (at: number) => at >= startAt && at <= asOf.getTime();
-  const ids = new Set(accounts?.map((a) => a.id));
   return {
     configured: true,
     asOf: asOf.toISOString(),
@@ -87,16 +79,6 @@ export async function payback(
     cohorts,
     proceeds,
     sources,
-    activity: {
-      accounts: accounts ? accounts.filter((a) => within(a.createdAt)).length : null,
-      checkins: accounts
-        ? accounts.filter((a) => a.completedAt !== null && within(a.completedAt)).length
-        : null,
-      offers:
-        accounts && behaviors
-          ? new Set(behaviors.filter((e) => ids.has(e.userId) && within(e.at)).map((e) => e.userId))
-              .size
-          : null,
-    },
+    activity: { accounts: null, checkins: null, offers: null },
   };
 }

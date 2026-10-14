@@ -8,6 +8,5 @@ dist/
 store/
 supabase/.temp/
 supabase/.branches/
-ops/grafana/dashboards/
 .DS_Store
 .astro/

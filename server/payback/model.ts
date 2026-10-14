@@ -1,13 +1,6 @@
-export interface Account {
-  id: string;
-  createdAt: number;
-  completedAt: number | null;
-}
-export interface Behavior {
-  id: string;
-  userId: string;
-  at: number;
-}
+export const GRAFANA_PAUSED_DETAIL =
+  "Paused. This connection used Grafana to read Nonyxa accounts and first completed check-ins, then matched accounts to PostHog paywall offers. These figures are unavailable until a new connection is chosen. Nonyxa owns the Grafana dashboard.";
+
 export type Grain = "day" | "week" | "month";
 export interface Chart {
   measures: { display_name: string }[];

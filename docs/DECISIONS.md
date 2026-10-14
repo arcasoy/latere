@@ -32,3 +32,12 @@ The domain is latere.space, protected by Cloudflare Access and a matching server
 assertion check. The ASC feed worker retains its integration-specific name to avoid
 creating a duplicate schedule. Generated Grafana dashboards stay out of Git because
 they embed operator-configured account exclusions.
+
+
+## Nonyxa owns its Grafana dashboard
+
+Accepted. Supersedes the Grafana tool extraction in “Separate source and deployment”.
+The early-user dashboard, generator, sync tools, and BI views belong to Nonyxa
+because their queries depend on its app schema. The Payback page keeps a paused activity section with an explanation.
+Latere makes no Grafana queries. RevenueCat reports remain available. The source move
+does not change the hosted dashboard or database connection.

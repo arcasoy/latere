@@ -66,7 +66,7 @@ export function Payback({ note, connectors }: { note: string; connectors: Connec
   }, [filters, revision]);
   const failures = Object.fromEntries(
     (panel?.sources ?? [])
-      .filter((s) => s.status !== "ready")
+      .filter((s) => s.status === "missing" || s.status === "failed")
       .map((s) => [s.name.startsWith("RevenueCat") ? "RevenueCat" : s.name, s.detail]),
   );
   return (
@@ -118,7 +118,7 @@ export function Payback({ note, connectors }: { note: string; connectors: Connec
       {panel && (
         <>
           {panel.sources
-            .filter((s) => s.status !== "ready")
+            .filter((s) => s.status === "missing" || s.status === "failed")
             .map((s) => (
               <p className="notice warn" key={s.name}>
                 {s.name}: {s.detail}
@@ -209,17 +209,17 @@ export function Payback({ note, connectors }: { note: string; connectors: Connec
               </tbody>
             </table>
           </div>
-          <h3 className="subhead">App activity in this period</h3>
-          <div className="totals wrap">
-            <Total value={count(panel.activity.accounts)} label="accounts created" />
-            <Total value={count(panel.activity.checkins)} label="first completed check-in" />
-            <Total value={count(panel.activity.offers)} label="people shown an offer" />
+          <div className="payback-paused">
+            <h3 className="subhead">App activity · paused</h3>
+            <div className="totals wrap">
+              <Total value={count(panel.activity.accounts)} label="accounts created" />
+              <Total value={count(panel.activity.checkins)} label="first completed check-in" />
+              <Total value={count(panel.activity.offers)} label="people shown an offer" />
+            </div>
+            <p className="note">
+              {panel.sources.find((source) => source.status === "paused")?.detail}
+            </p>
           </div>
-          <p className="note">
-            Counts by activity date, not a joined conversion funnel. Accounts and first check-ins
-            come from Supabase; offers come from consented PostHog events matched to those accounts.
-            Internal and deleted-account exclusions differ from RevenueCat’s customer population
-          </p>
           <details className="payback-details">
             <summary>Sources and freshness</summary>
             <ul>

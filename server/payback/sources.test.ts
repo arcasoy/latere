@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { payback } from "./index";
-import { readAccounts, readChart } from "./sources";
+import { readChart } from "./sources";
 
 const env = { REVENUECAT_PROJECT_ID: "project", REVENUECAT_API_KEY: "test-only" };
 test("charts request fresh proceeds directly without any customer scan", async (t) => {
@@ -16,13 +16,26 @@ test("charts request fresh proceeds directly without any customer scan", async (
   assert.equal(urls[0]?.searchParams.get("selectors"), '{"revenue_type":"proceeds"}');
   assert.equal(urls[0]?.searchParams.get("realtime"), "true");
 });
-test("failed account query cannot be interpreted as no accounts", async (t) => {
-  t.mock.method(globalThis, "fetch", async () =>
-    Response.json({ results: { A: { error: "failed", frames: [] } } }),
+test("paused activity never contacts Grafana or PostHog even with credentials", async (t) => {
+  t.mock.method(globalThis, "fetch", async () => {
+    assert.fail("Paused activity must not make requests");
+  });
+  const panel = await payback(
+    {
+      GRAFANA_URL: "https://example.org",
+      GRAFANA_TOKEN: "test-only",
+      SUPABASE_DS_UID: "test",
+      EXCLUDE_EMAILS: "internal@example.org",
+      POSTHOG_HOST: "https://example.org",
+      POSTHOG_API_KEY: "test-only",
+      POSTHOG_PROJECT_ID: "test",
+    },
+    new URLSearchParams(),
   );
-  await assert.rejects(
-    readAccounts({ GRAFANA_URL: "https://example.org", EXCLUDE_EMAILS: "internal@example.org" }),
-    /complete table/,
+  assert.deepEqual(panel.activity, { accounts: null, checkins: null, offers: null });
+  assert.equal(
+    panel.sources.find((source) => source.name === "Supabase via Grafana")?.status,
+    "paused",
   );
 });
 test("provider failure remains unavailable and every request fetches again", async (t) => {

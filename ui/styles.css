@@ -1607,3 +1607,11 @@ tr:has(.status-review) {
   color: var(--text);
   margin-bottom: 12px;
 }
+
+.connector.paused,
+.payback-paused {
+  color: var(--muted);
+}
+.connector.paused .connector-dot {
+  background: var(--muted);
+}

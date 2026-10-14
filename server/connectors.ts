@@ -1,9 +1,12 @@
 import { hasLLM } from "@latere/core";
 import { hasToken, isUploadConfigured } from "@latere/publish";
 
+import { GRAFANA_PAUSED_DETAIL } from "./payback/model";
+
 export interface Connector {
   name: string;
   connected: boolean;
+  paused?: boolean;
   detail: string;
 }
 
@@ -40,14 +43,12 @@ export function connectors(): ConnectorsBySection {
       ),
     ],
     payback: [
-      fromEnv(
-        "Supabase via Grafana",
-        "GRAFANA_URL",
-        "GRAFANA_TOKEN",
-        "SUPABASE_DS_UID",
-        "EXCLUDE_EMAILS",
-      ),
-      fromEnv("PostHog", "POSTHOG_API_KEY", "POSTHOG_PROJECT_ID", "POSTHOG_HOST"),
+      {
+        name: "Supabase via Grafana",
+        connected: false,
+        paused: true,
+        detail: GRAFANA_PAUSED_DETAIL,
+      },
       fromEnv("RevenueCat", "REVENUECAT_API_KEY", "REVENUECAT_PROJECT_ID"),
       unwired("TikTok / AppsFlyer"),
       unwired("Apple financial reports"),

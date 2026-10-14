@@ -17,11 +17,14 @@ export function Connectors({
         return (
           <li
             key={item.name}
-            className={connected ? "connector on" : "connector off"}
+            className={
+              item.paused ? "connector paused" : connected ? "connector on" : "connector off"
+            }
             title={failure ?? item.detail}
           >
             <span className="connector-dot" />
             {item.name}
+            {item.paused ? " · paused" : ""}
           </li>
         );
       })}
