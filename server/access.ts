@@ -25,7 +25,7 @@ function localPreview(request: IncomingMessage): boolean {
 
 export async function authenticate(request: IncomingMessage): Promise<Identity> {
   if (localPreview(request)) {
-    return { ok: true, email: "local preview — Access not enforced" };
+    return { ok: true, email: null };
   }
 
   const team = process.env.ACCESS_TEAM_DOMAIN;

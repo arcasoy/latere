@@ -50,16 +50,16 @@ function initialSection(): SectionId {
 }
 
 function Identity() {
-  const [who, setWho] = useState("checking the gate…");
+  const [who, setWho] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/health")
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-      .then((body: { email?: string | null }) => setWho(body.email ?? "signed in"))
+      .then((body: { email?: string | null }) => setWho(body.email ?? null))
       .catch(() => setWho("gate unreachable"));
   }, []);
 
-  return <p className="who">{who}</p>;
+  return who ? <p className="who">{who}</p> : null;
 }
 
 function Placeholder({ note, connectors }: { note: string; connectors: Connector[] }) {
